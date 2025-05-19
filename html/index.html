@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Dog-Tinder</title>
+</head>
+<body>
+    <header>
+        <img src="images/Logo-farbig-klein.png" alt="logo">
+    </header>
+
+    <main>
+        <!--Swipen Konfiguration-->
+        <section id="configuration" class="hidden">
+            <div>
+                <img id="dog_image" src="/" alt="">
+                <p id="dog_name">Australian Shepherd</p>
+                <p id="dog_rasse">blabla</p>
+                <img src="images/blauer hacken.png" alt="blauer_hacken">
+            </div>
+
+            <div class="buttons">
+                <button class="button_no">✖</button>
+                <button class="button_yes">❤</button>
+            </div>
+        </section>
+
+        <!-- Match -->
+        <section id="match" class="hidden">
+            <div class="buttons">
+                <button class="cross">✖</button>
+            </div>
+
+            <div>
+                <h1>It’s a Match!</h1>
+                <p>You and <span id="dog_name">Australian Shepherd</span> have liked each other!</p>
+                <img id="match_image" src="/" alt="">
+                <p id="match_name">Australian Shepherd</p>
+                <p id="match_Rasse">Bla bla</p>
+            </div>
+            
+            <div class="buttons">
+                <button class="button_nachricht_senden">Nachricht senden</button>
+            </div>
+        </section>
+
+        <!-- Visitenkarte Besitzer/in -->
+         <section id="visitenkarte" class="hidden"> 
+            <div class="besitzer-card">
+                <div class="buttons">
+                    <button class="cross">✖</button>
+                </div>
+                <div>
+                    <img id="match_image" src="/" alt="">
+                        <p id="match_name">Australian Shepherd</p>
+                        <p id="match_Rasse">Bla bla</p>
+                        <img src="images/blauer hacken.png" alt="blauer_hacken">
+                </div>
+    
+                <div class="informationen_besitzer">
+                    <p>hie müessemer mit array schaffe aber weiss gd nid no nid wie</p>
+                </div>
+            </div>
+
+
+        <!-- Animieren zum weiter Swipen -->
+            
+            
+
+
+         </section>
+
+
+
+
+
+    </main>
+    <script src="js/script.js" type="module"></script> <!-- nicht löschen! module aktiviert die modernen Funktionen von javascript-->
+</body>
+</html>
+
+
