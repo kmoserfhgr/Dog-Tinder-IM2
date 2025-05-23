@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Dog-Tinder</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <title>Dog-Tinder</title>
 </head>
 <body>
-    <header>
-        <img src="images/Logo-farbig-klein.png" alt="logo">
-    </header>
+  <header>
+    <img src="images/logo-farbig-klein.png" alt="DogTinder Logo" />
+  </header>
 
-    <main>
-        <!--Swipen Konfiguration-->
-        <section id="configuration" class="hidden">
-            <div>
-                <img id="dog_image" src="/" alt="">
-                <p id="dog_name">Australian Shepherd</p>
-                <p id="dog_rasse">blabla</p>
-                <img src="images/blauer hacken.png" alt="blauer_hacken">
-            </div>
+  <main>
+    <!-- Swipen Konfiguration -->
+      <section id="configuration" class="hidden">
+        <div class="card">
+         <div class="card-content">
+             <img id="dog_image" src="..." alt="Hundebild">
+            <p id="dog_name">Australian Shepherd</p>
+            <p id="dog_rasse">blabla</p>
+        </div>
 
-            <div class="buttons">
-                <button class="button_no">✖</button>
-                <button class="button_yes">❤</button>
-            </div>
-        </section>
+    <div class="buttons">
+      <button class="button_no">✖</button>
+      <button class="button_yes">❤</button>
+    </div>
+  </div>
+</section>
 
-        <!-- Match -->
-        <section id="match" class="hidden">
-            <div class="buttons">
-                <button class="cross">✖</button>
-            </div>
+    <!-- Match -->
+    <section id="match" class="hidden">
+      <div class="buttons">
+        <button class="cross">✖</button>
+      </div>
 
-            <div>
-                <h1>It’s a Match!</h1>
-                <p>You and <span id="dog_name">Australian Shepherd</span> have liked each other!</p>
-                <img id="match_image" src="/" alt="">
-                <p id="match_name">Australian Shepherd</p>
-                <p id="match_Rasse">Bla bla</p>
-            </div>
-            
-            <div class="buttons">
-                <button class="button_nachricht_senden">Nachricht senden</button>
-            </div>
-        </section>
+      <div class="match-info">
+        <h1>It’s a Match!</h1>
+        <p>You and <span id="dog_name">Australian Shepherd</span> have liked each other!</p>
+        <img id="match_image" src="/" alt="Match Hund" />
+        <p id="match_name">Australian Shepherd</p>
+        <p id="match_Rasse">Bla bla</p>
+      </div>
 
-        <!-- Visitenkarte Besitzer/in -->
-         <section id="visitenkarte" class="hidden"> 
-            <div class="besitzer-card">
-                <div class="buttons">
-                    <button class="cross">✖</button>
-                </div>
-                <div>
-                    <img id="match_image" src="/" alt="">
-                        <p id="match_name">Australian Shepherd</p>
-                        <p id="match_Rasse">Bla bla</p>
-                        <img src="images/blauer hacken.png" alt="blauer_hacken">
-                </div>
-    
-                <div class="informationen_besitzer">
-                    <p>hie müessemer mit array schaffe aber weiss gd nid no nid wie</p>
-                </div>
-            </div>
+      <div class="buttons">
+        <button class="button_nachricht_senden">Nachricht senden</button>
+      </div>
+    </section>
+
+    <!-- Visitenkarte Besitzer/in -->
+    <section id="visitenkarte" class="hidden">
+      <div class="besitzer-card">
+        <div class="buttons">
+          <button class="cross">✖</button>
+        </div>
+
+        <div class="card-info">
+          <img id="match_image" src="/" alt="Hund" />
+          <p id="match_name">Australian Shepherd</p>
+          <p id="match_Rasse">Bla bla</p>
+          <img src="images/blauer hacken.png" alt="Verifiziert" class="badge" />
+        </div>
+
+        <div class="informationen_besitzer">
+          <p>hie müesse mr mit arrays schaffe aber weis no gd nid wie</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unpassender Match Hinweis -->
+    <section class="unpassender-match">
+      <div class="background-image">
+        <img src="images/Hunde.png" alt="Hintergrund mit Hunden" />
+      </div>
+
+      <div class="content">
+        <img src="images/logo-negativ-klein.png" alt="DogTinder Logo" class="logo" />
+        <h1>Noch nicht den<br />passenden Match<br />gefunden?</h1>
+        <div class="buttons">
+          <button class="swipe-weiter">Swipe weiter</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
 
-        <!-- Animieren zum weiter Swipen -->
-            
-            
 
 
-         </section>
-
-
-
-
-
-    </main>
-    <script src="js/script.js" type="module"></script> <!-- nicht löschen! module aktiviert die modernen Funktionen von javascript-->
+  <script src="js/script.js" type="module"></script> <!-- NICHT LÖSCHEN! -->
 </body>
 </html>
-
-
