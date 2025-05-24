@@ -171,9 +171,9 @@ section {
 /* Responsive Design */
 @media (max-width: 600px) {
   header img {
-    width: auto;        /* nicht nur width anpassen */
-    height: 30px;       /* stattdessen Höhe anpassen, um Verzerrung zu vermeiden */
-    position: relative; /* vom absoluten Positionieren lösen */
+    width: auto;        
+    height: 30px;       
+    position: relative; 
     top: auto;
     left: auto;
     margin: 10px auto;
@@ -181,12 +181,12 @@ section {
   }
 
   section {
-    max-width: 100%;    /* Sections auf volle Breite in kleinen Viewports */
-    padding: 0 10px;    /* Seitliches Padding hinzufügen */
+    max-width: 100%;    
+    padding: 0 10px;    
   }
 
   .card {
-    padding: 10px;      /* Padding verringern */
+    padding: 10px;     
   }
 
   .card-content,
@@ -196,15 +196,15 @@ section {
   }
 
   .buttons {
-    gap: 15px;          /* Abstand zwischen Buttons halbieren */
+    gap: 15px;         
   }
 
   .button_yes,
   .button_no {
-    width: 50px;        /* Buttons etwas kleiner */
+    width: 50px;       
     height: 50px;
-    font-size: 1.2rem;  /* Schriftgröße anpassen */
-    padding: 0;         /* Padding entfernen */
+    font-size: 1.2rem;  
+    padding: 0;         
   }
 
   .button_cross {
@@ -217,16 +217,16 @@ section {
 
   .button_nachricht_senden,
   .button_swipe_weiter {
-    margin: 1rem auto;  /* Margin stark reduzieren, zentrieren */
-    padding: 10px 20px; /* Padding leicht anpassen */
+    margin: 1rem auto;  
+    padding: 10px 20px; 
     font-size: 14px;
   }
 
-  /* #configuration Anpassung für kleinere Viewports */
+  /* Anpassung für kleinere Viewports */
   #configuration {
-    height: auto;      /* Statt 100vh lieber flexible Höhe */
-    min-height: 80vh;  /* Mindesthöhe zum Ausfüllen */
-    width: 100%;       /* Vollbreite */
+    height: auto;     
+    min-height: 80vh; 
+    width: 100%;       
     padding: 10px 0;
   }
 }
