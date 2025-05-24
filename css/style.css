@@ -61,6 +61,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 40px;
 }
 
 .card-content img {
@@ -73,6 +74,7 @@ section {
   margin: 5px 0;
   font-size: 1.2rem;
   text-align: center;
+  padding-bottom: 30px;
 }
 
 /* Buttons */
@@ -152,7 +154,6 @@ section {
 
 /* its a Match */
 #match {
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -166,6 +167,7 @@ section {
 }
 .match-info h1 {
   color: #ffffff;
+  margin-top: 50px;
 }
 
 .match-info p {
@@ -205,71 +207,10 @@ section {
 /* Content über dem Hintergrund */
 .content {
   position: relative;
-  font-size: xx-large;
+  font-size: 3rem;
   z-index: 5;
   color: white;
   padding: 10rem;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  header img {
-    width: auto;        
-    height: 30px;       
-    position: relative; 
-    top: auto;
-    left: auto;
-    margin: 10px auto;
-    display: block;
-  }
-
-  section {
-    max-width: 100%;    
-    padding: 0 10px;    
-  }
-
-  .card {
-    padding: 10px;     
-  }
-
-  .card-content,
-  .match-info,
-  .card-info {
-    padding: 15px;
-  }
-
-  .buttons {
-    gap: 15px;         
-  }
-
-  .button_yes,
-  .button_no {
-    width: 50px;       
-    height: 50px;
-    font-size: 1.2rem;  
-    padding: 0;         
-  }
-
-  .button_cross {
-    font-size: 20px;
-  }
-
-  .match-info h1 {
-    font-size: 20px;
-  }
-
-  .button_nachricht_senden,
-  .button_swipe_weiter {
-    margin: 1rem auto;  
-    padding: 10px 20px; 
-    font-size: 14px;
-  }
-
-  /* Anpassung für kleinere Viewports */
-  #configuration {
-    height: auto;     
-    min-height: 80vh; 
-    width: 100%;       
-    padding: 10px 0;
-  }
 }
