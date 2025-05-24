@@ -7,6 +7,7 @@
   
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
     background-color: #ffffff;
     color: #333333;
     display: flex;
@@ -81,7 +82,7 @@
     text-align: center;
   }
   
-  /* Buttons am unteren Rand */
+  /* Buttons */
   .buttons {
     display: flex;
     justify-content: center;
@@ -123,7 +124,7 @@
     }
 
     .button_swipe_weiter {
-      background-color: #ff5864; /* Tinder-Rot */
+      background-color: #ff5864;
       color: white;
       border: none;
       border-radius: 25px;
@@ -133,5 +134,40 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
+    .button_cross {
+      color: #ff5864;
+      position: absolute;
+      font-size: 3rem;
+      background-color: transparent;
+      cursor: pointer;
+      z-index: 100;
+      border: none;
+      display: inline-block;
+      margin: 0;
+      top: 10px;
+      right: 10px;
+
+    }
+
+    /* Visitenkarte */
+#visitenkarte {
+  position: relative;
+}
+
+/* its a Match*/
+#match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.match-info {
+  position: relative;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
   
   
