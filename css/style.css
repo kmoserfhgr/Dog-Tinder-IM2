@@ -17,7 +17,7 @@ header img {
   position: absolute;
   top: 20px;
   left: 20px;
-  height: 40px; /* Basishöhe */
+  height: 40px; 
   z-index: 10;
 }
 
@@ -198,18 +198,17 @@ section {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 180px; 
+  height: 40px; 
   z-index: 10;
 }
 
 /* Content über dem Hintergrund */
 .content {
   position: relative;
+  font-size: xx-large;
   z-index: 5;
   color: white;
-  padding: 2rem;
-  max-width: 400px;
-  margin: 3rem;
+  padding: 10rem;
 }
 
 /* Responsive Design */
