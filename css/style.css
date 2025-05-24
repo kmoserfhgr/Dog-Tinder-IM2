@@ -108,4 +108,30 @@
     background: #33cc99;
     color: white;
   }
+
+  
+  .button_nachricht_senden {
+    background-color: #ff5864; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+
+    .button_swipe_weiter {
+      background-color: #ff5864; /* Tinder-Rot */
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
   
