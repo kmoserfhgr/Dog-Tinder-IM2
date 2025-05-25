@@ -66,6 +66,8 @@ section {
 
 .card-content img {
   width: 100%;
+  max-height: 50vh;
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 15px;
 }
