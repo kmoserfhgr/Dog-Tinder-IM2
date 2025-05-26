@@ -13,13 +13,13 @@
 
   <main>
 
-    <!-- Swipen Konfiguration -->
-      <section id="configuration" class="hidden">
-        <div class="card">
-         <div class="card-content">
-             <img id="dog_image" src="..." alt="Hundebild">
+<!-- Swipen Konfiguration -->
+<section id="configuration">
+  <div><img src="/images/logo-farbig-klein.png" alt="DogTinder Logo" class="logo_farbig"/></div>
+  <div class="card">
+       <div class="card-content">
+            <img id="dog_image" src="..." alt="Hundebild">
             <p id="dog_name">Australian Shepherd</p>
-            <p id="dog_rasse">Rasse</p>
             <div class="buttons">
               <button id="button_no" class="button_no">✖</button>
               <button id="button_yes" class="button_yes">❤</button>
@@ -34,10 +34,8 @@
       <div class="match-info">
         <a href="upassender_match.html" class="button_cross">✖</a>
         <h1>It’s a Match!</h1>
-        <p>You and <span id="dog_name">Australian Shepherd</span> have liked each other!</p>
+        <p>You and <span id="match_name">Australian Shepherd</span> have liked each other!</p>
         <img id="match_image" src="/" alt="Match Hund" />
-        <p id="match_name">Australian Shepherd</p>
-        <p id="match_Rasse">Rasse</p>
         <div class="buttons">
           <button class="button_nachricht_senden">Nachricht senden</button>
         </div>
@@ -55,12 +53,14 @@
         <div class="card-info">
           <img id="match_image" src="/" alt="Hund" />
           <p id="match_name">Australian Shepherd</p>
-          <p id="match_Rasse">Bla bla</p>
-          <img src="images/blauer hacken.png" alt="Verifiziert" class="badge" />
+          <img src="images/blauer-hacken.png" alt="Verifiziert" class="badge" />
         </div>
 
         <div class="informationen_besitzer">
-          <p>hie müesse mr mit arrays schaffe aber weis no gd nid wie</p>
+          <p id="owner_name">Name</p>
+          <p id="owner_phone">Telefon</p>
+          <p id="owner_email">E-Mail</p>
+          <p id="owner_location">Ort</p>
         </div>
       </div>
     </section>
@@ -69,6 +69,6 @@
 
 
 
-  <script src="js/script.js" type="module"></script> <!-- NICHT LÖSCHEN! -->
+  <script src="javascript/script.js" type="module"></script> <!-- NICHT LÖSCHEN! -->
 </body>
 </html>
