@@ -944,6 +944,9 @@ const card = document.querySelector('.card');
 let startX = 0;
 let endX = 0;
 
+// Swipe-Variablen
+let isDragging = false;
+
 // Touch-Start
 card.addEventListener('touchstart', (e) => {
   startX = e.changedTouches[0].screenX;
@@ -953,6 +956,35 @@ card.addEventListener('touchstart', (e) => {
 card.addEventListener('touchend', async (e) => {
   endX = e.changedTouches[0].screenX;
   handleSwipe();
+});
+
+// Maus gedrückt
+card.addEventListener('mousedown', (e) => {
+  startX = e.clientX;
+  isDragging = true;
+});
+
+// Maus bewegt
+card.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  // Optional: live anzeigen wie weit gezogen wurde
+});
+
+// Maus losgelassen
+card.addEventListener('mouseup', (e) => {
+  if (!isDragging) return;
+  const endX = e.clientX;
+  const diff = endX - startX;
+
+  if (diff > 50) {
+    console.log('Swipe nach rechts (Like)');
+    button_yes.click();
+  } else if (diff < -50) {
+    console.log('Swipe nach links (Dislike)');
+    button_no.click();
+  }
+
+  isDragging = false;
 });
 
 // Tastatursteuerung (← = nein, → = ja)
