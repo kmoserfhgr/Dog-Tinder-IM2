@@ -13,11 +13,12 @@ body {
 }
 
 /* Header */
-header img {
+.logo_farbig {
   position: absolute;
-  top: 20px;
-  left: 10%;
-  height: 40px; 
+  top: 2em;;
+  left: 3rem;
+  height: 3rem; 
+  margin-bottom: 6rem;
   z-index: 10;
 }
 
@@ -33,7 +34,7 @@ section {
 }
 */
 
-/* Konfigurationskarte */
+/* Swipe Sweite */
 #configuration {
   height: 100vh; /* 100% der Viewport-Höhe */
   width: 100vw;  /* 100% der Viewport-Breite */
@@ -43,7 +44,7 @@ section {
 }
 
 .card {
-  width: 80%;
+  width: 92%;
   height: 80%;
   background: #f9f9f9;
   border-radius: 20px;
@@ -52,16 +53,16 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 3rem;
 }
 
-/* Inhalt */
+/* Inhalt Swipe Seite */
 .card-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 40px;
+  margin: 3rem;
 }
 
 .card-content img {
@@ -78,6 +79,9 @@ section {
   text-align: center;
   padding-bottom: 30px;
 }
+
+
+
 
 /* Buttons */
 .buttons {
@@ -149,10 +153,7 @@ section {
   text-decoration: none;
 }
 
-/* Visitenkarte */
-#visitenkarte {
-  position: relative;
-}
+
 
 /* its a Match */
 #match {
@@ -177,6 +178,11 @@ section {
   margin: 10px;
 }
 
+/* Visitenkarte */
+#visitenkarte {
+  position: relative;
+}
+
 /* Noch nicht den passenden Match gefunden*/
 .unpassender_match {
   position: relative;
@@ -197,17 +203,17 @@ section {
   pointer-events: none; 
 }
 
-/* Logo oben rechts */
+/* Logo oben links */
 .logo {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  height: 40px; 
+  top: 2em;;
+  left: 3rem;
+  height: 3rem; 
   z-index: 10;
 }
 
 /* Content über dem Hintergrund */
-.content {
+.content.unpassender_match {
   position: relative;
   font-size: 3rem;
   z-index: 5;
