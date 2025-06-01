@@ -75,10 +75,10 @@ document.querySelector('#visitenkarte').classList.remove ('hidden');
   const randomOwner = besitzer_card[Math.floor(Math.random() * besitzer_card.length)];
 
   // Besitzerinformationen anzeigen
-  document.querySelector('#owner_name').innerText = `Name: ${randomOwner.name}`;
-  document.querySelector('#owner_phone').innerText = `Telefon: ${randomOwner.phone}`;
-  document.querySelector('#owner_email').innerText = `E-Mail: ${randomOwner.email}`;
-  document.querySelector('#owner_location').innerText = `Ort: ${randomOwner.location}`;
+  document.querySelector('#owner_name').innerText = `${randomOwner.name}`;
+  document.querySelector('#owner_phone').innerText = `${randomOwner.phone}`;
+  document.querySelector('#owner_email').innerText = `${randomOwner.email}`;
+  document.querySelector('#owner_location').innerText = `${randomOwner.location}`;
 });
 
 
