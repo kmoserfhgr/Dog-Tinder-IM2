@@ -250,7 +250,7 @@ section {
   font-size: 1.2rem;
   font-weight: bold;
   margin-top: -3.5rem;
-  margin-left: -1.5rem;
+  margin-left: 1rem;
 }
 
 .badge {
@@ -371,6 +371,7 @@ section {
     padding: 10px 20px;
     font-size: 14px;
   }
+  
 }
 
 /* Für kleinere Tablets und große Smartphones (max-width: 768px) */
