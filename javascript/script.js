@@ -14,15 +14,45 @@ const button_yes = document.querySelector('#button_yes');
 
 /*Events*/
 
-const buttonCross = document.querySelector('.button_cross');
+function addButtonEffects(selector) {
+  const buttons = document.querySelectorAll(selector);
 
-buttonCross.addEventListener('click', function () {
-  window.location.href = 'upassender_match.html';
-});
+  buttons.forEach(button => {
+    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    // Hover: scale up + shadow
+    button.addEventListener('mouseenter', () => {
+      button.style.transform = 'scale(1.1)';
+      button.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+    });
 
-button_no.addEventListener('click', async function () {
-  await loadDogProfile();
-});
+    // Hover End: reset
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = '';
+      button.style.boxShadow = '';
+    });
+
+    // Active (mousedown): scale down
+    button.addEventListener('mousedown', () => {
+      button.style.transform = 'scale(0.95)';
+    });
+
+    // Mouseup: zurück zur Hover-Animation
+    button.addEventListener('mouseup', () => {
+      button.style.transform = 'scale(1.1)';
+    });
+  });
+}
+
+// Wende die Funktion auf deine Buttons an
+addButtonEffects('.button_no');
+addButtonEffects('.button_yes');
+addButtonEffects('.button_nachricht_senden');
+addButtonEffects('.button_swipe_weiter');
+addButtonEffects('.button_cross');
+addButtonEffects('.button_cross_visitenkarte');
+
+
+
 
 button_yes.addEventListener('click', async function () {
   // aktuelles Hundprofil speichern
@@ -45,15 +75,14 @@ button_yes.addEventListener('click', async function () {
 });
 
 function showMatch(dog) {
-  // Konfiguration ausblenden
-  document.querySelector('#configuration').classList.add('hidden');
-  // Match-Sektion anzeigen
+  // Kein .hidden auf #configuration – es soll im Hintergrund sichtbar bleiben!
+
   const matchSection = document.querySelector('#match');
   matchSection.classList.remove('hidden');
-  // Match-Infos einfügen
+
+  // Match-Daten setzen
   document.querySelector('#match_name').innerText = dog.name;
   document.querySelector('#match_image').src = dog.image;
-  document.querySelector('#match').classList.remove ('hidden');
 }
 
 // Eventlistener für "Nachricht senden"
@@ -958,34 +987,135 @@ card.addEventListener('touchend', async (e) => {
   handleSwipe();
 });
 
-// Maus gedrückt
+button_yes.addEventListener('click', async function () {
+  animateAndSwipe('right');
+});
+
+button_no.addEventListener('click', async function () {
+  animateAndSwipe('left');
+});
+
+function animateAndSwipe(direction) {
+  const cardContent = document.querySelector('.card-content');
+  cardContent.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right');
+
+  // Nach Animation Hund neu laden
+  setTimeout(async () => {
+    cardContent.classList.remove('swipe-left', 'swipe-right');
+    cardContent.style.transform = '';
+    if (direction === 'right') {
+      // Like-Logik
+      const currentDog = {
+        name: document.querySelector('#dog_name').innerText,
+        image: document.querySelector('#dog_image').src
+      };
+      likedDogs.push(currentDog);
+      likeCounter++;
+      if (likeCounter >= matchAfter) {
+        showMatch(currentDog);
+        likeCounter = 0;
+        matchAfter = getRandomMatchNumber();
+      } else {
+        await loadDogProfile();
+      }
+    } else {
+      // Dislike → direkt nächsten Hund
+      await loadDogProfile();
+    }
+  }, 400); // Zeit muss zur CSS-Animation passen
+}
+
+// Desktop: Maus gedrückt
 card.addEventListener('mousedown', (e) => {
   startX = e.clientX;
   isDragging = true;
+  cardContent.classList.add('dragging');
 });
 
-// Maus bewegt
-card.addEventListener('mousemove', (e) => {
+// Desktop: Maus bewegt
+document.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
-  // Optional: live anzeigen wie weit gezogen wurde
+  const moveX = e.clientX;
+  const diff = moveX - startX;
+  currentTranslateX = diff;
+  const rotation = diff / 20;
+  cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`;
 });
 
-// Maus losgelassen
-card.addEventListener('mouseup', (e) => {
+// Desktop: Maus losgelassen
+document.addEventListener('mouseup', async (e) => {
   if (!isDragging) return;
-  const endX = e.clientX;
-  const diff = endX - startX;
+  isDragging = false;
+  cardContent.classList.remove('dragging');
 
-  if (diff > 50) {
-    console.log('Swipe nach rechts (Like)');
-    button_yes.click();
-  } else if (diff < -50) {
-    console.log('Swipe nach links (Dislike)');
-    button_no.click();
+  if (currentTranslateX > 100) {
+    cardContent.classList.add('swipe-right');
+    await delayAndLoad(button_yes);
+  } else if (currentTranslateX < -100) {
+    cardContent.classList.add('swipe-left');
+    await delayAndLoad(button_no);
+  } else {
+    cardContent.classList.add('animate-back');
+    cardContent.style.transform = `translateX(0) rotate(0deg)`;
+    setTimeout(() => {
+      cardContent.classList.remove('animate-back');
+      cardContent.style.transform = '';
+    }, 300);
   }
 
-  isDragging = false;
+  currentTranslateX = 0;
 });
+
+const cardContent = document.querySelector('.card-content');
+
+let currentTranslateX = 0;
+
+card.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+  cardContent.classList.add('dragging');
+});
+
+card.addEventListener('touchmove', (e) => {
+  const moveX = e.touches[0].clientX;
+  const diff = moveX - startX;
+  currentTranslateX = diff;
+
+  const rotation = diff / 20; // leichte Drehung bei Bewegung
+  cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`;
+});
+
+card.addEventListener('touchend', async () => {
+  cardContent.classList.remove('dragging');
+
+  if (currentTranslateX > 100) {
+    cardContent.classList.add('swipe-right');
+    await delayAndLoad(button_yes);
+  } else if (currentTranslateX < -100) {
+    cardContent.classList.add('swipe-left');
+    await delayAndLoad(button_no);
+  } else {
+    cardContent.classList.add('animate-back');
+    cardContent.style.transform = `translateX(0) rotate(0deg)`;
+
+    setTimeout(() => {
+      cardContent.classList.remove('animate-back');
+      cardContent.style.transform = '';
+    }, 900);
+  }
+
+  currentTranslateX = 0;
+});
+
+function delayAndLoad(button) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      button.click();
+      cardContent.classList.remove('swipe-left', 'swipe-right');
+      cardContent.style.transform = '';
+      resolve();
+    }, 900); // gleiche Zeit wie Animation
+  });
+}
 
 // Tastatursteuerung (← = nein, → = ja)
 document.addEventListener('keydown', async (e) => {
