@@ -10,7 +10,7 @@ Diese responsive Website ist eine humorvolle Hommage an Tinder – jedoch für H
 [Was war schwierig?]  
 
 # Learnings und Schwierigkeiten | Lou Gmür 
-Die Arbeit mit JavaScript war neu und herausfordernd. Gemeinsames Arbeiten erforderte viel Absprache, um eine klare, einheitliche Struktur im HTML, CSS und JS zu schaffen.
+Die Arbeit mit JavaScript war neu und herausfordernd. Es zeigte sich, dass eine frühzeitige Absprache zu Naming und Struktur-Aufbau wichtig gewesen wäre, um einen sauberen, verständlichen Code zu schreiben.
 
 
 # Benutzte Ressourcen und Prompts
