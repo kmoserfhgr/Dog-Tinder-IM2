@@ -98,6 +98,8 @@ section {
   padding-top: 30rem;
 }
 
+/* Swipe Funktion */
+
 .card-content.dragging {
   transition: none;
   will-change: transform;
@@ -232,7 +234,6 @@ section {
   backdrop-filter: blur(3px); /* Optional: schöner Blur */
 }
 
-
 .match-info {
   position: relative;
   z-index: 2; /* über dem Hintergrund */
@@ -283,7 +284,7 @@ section {
   background: #ffffff;
   border-radius: 24px;
   width: 70%;
-  height: 60%;
+  height: 45%;
   max-width: 600px;
   padding: 2.5rem;
   box-shadow: 0 6px320px rgba(0, 0, 0, 0.3);

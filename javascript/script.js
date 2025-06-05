@@ -1,5 +1,7 @@
 console.log('hoi script.js');
 
+// === 1. Datenverwaltung ===
+
 let likedDogs = []; // Speicherung gelikter Hunde
 let likeCounter = 0;
 let matchAfter = getRandomMatchNumber(); // Wie viele Likes bis zum nächsten Match
@@ -8,17 +10,36 @@ function getRandomMatchNumber() {
   return Math.floor(Math.random() * 9) + 2; // Zufallszahl zwischen 2 und 10
 }
 
-/*DOM*/
+
+// === 2. DOM-Elemente -> Bausteine für den Aufbau ===
 const button_no = document.querySelector('#button_no');
 const button_yes = document.querySelector('#button_yes');
+const card = document.querySelector('.card');
+const cardContent = document.querySelector('.card-content');
 
-/*Events*/
+
+
+// === 3. Aufbau ===
+
+// Buttons animieren
+addButtonEffects('.button_no');
+addButtonEffects('.button_yes');
+addButtonEffects('.button_nachricht_senden');
+addButtonEffects('.button_swipe_weiter');
+addButtonEffects('.button_cross');
+addButtonEffects('.button_cross_visitenkarte');
+
+// Event Listener setzen
+
+// Initial laden
+
 
 function addButtonEffects(selector) {
   const buttons = document.querySelectorAll(selector);
 
   buttons.forEach(button => {
-    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease'; 
+
     // Hover: scale up + shadow
     button.addEventListener('mouseenter', () => {
       button.style.transform = 'scale(1.1)';
@@ -43,16 +64,11 @@ function addButtonEffects(selector) {
   });
 }
 
-// Wende die Funktion auf deine Buttons an
-addButtonEffects('.button_no');
-addButtonEffects('.button_yes');
-addButtonEffects('.button_nachricht_senden');
-addButtonEffects('.button_swipe_weiter');
-addButtonEffects('.button_cross');
-addButtonEffects('.button_cross_visitenkarte');
 
 
 
+
+// === Like-Event ===
 
 button_yes.addEventListener('click', async function () {
   // aktuelles Hundprofil speichern
@@ -74,6 +90,7 @@ button_yes.addEventListener('click', async function () {
   }
 });
 
+
 function showMatch(dog) {
   // Kein .hidden auf #configuration – es soll im Hintergrund sichtbar bleiben!
 
@@ -88,8 +105,10 @@ function showMatch(dog) {
 // Eventlistener für "Nachricht senden"
 document.querySelector('.button_nachricht_senden').addEventListener('click', function () {
 document.querySelector('#visitenkarte').classList.remove ('hidden');
+
   // Match-Bereich ausblenden
   document.querySelector('#match').classList.add('hidden');
+
   // Visitenkarte einblenden
   document.querySelector('#visitenkarte').classList.remove('hidden');
 
@@ -967,7 +986,7 @@ async function loadDogProfile() { //wählt eine zufällige Hunderasse.
 
 
 /*Swipe Events*/
-const card = document.querySelector('.card');
+
 
 // Touch-Variablen
 let startX = 0;
@@ -1066,7 +1085,7 @@ document.addEventListener('mouseup', async (e) => {
   currentTranslateX = 0;
 });
 
-const cardContent = document.querySelector('.card-content');
+
 
 let currentTranslateX = 0;
 
