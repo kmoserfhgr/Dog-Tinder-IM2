@@ -424,7 +424,7 @@ section {
 
   .card-content p {
     font-size: 2rem;
-    padding-top: 22rem;
+    padding-top: 32rem;
   }
 
   .button_no,
@@ -436,7 +436,6 @@ section {
 
   .buttons {
     gap: 25px;
-    margin-top: 2rem;
   }
 
 }
@@ -451,20 +450,18 @@ section {
 
   .card-content p {
     font-size: 1.6rem;
-    padding-top: 18rem;
-    padding-bottom: 30px;
+    padding-top: 32rem;
   }
 
   .button_no,
   .button_yes {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     font-size: 1.6rem;
   }
 
   .buttons {
-    gap: 20px;
-    margin-top: 1.5rem;
+    gap: 25px;
   }
 }
 
@@ -478,20 +475,18 @@ section {
   
   .card-content p {
     font-size: 1.3rem;
-    padding-top: 15rem;
-    padding-bottom: 15px;
+    padding-top: 32rem;
   }
 
   .button_no,
   .button_yes {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     font-size: 1.4rem;
   }
 
   .buttons {
-    gap: 15px;
-    margin-top: 1rem;
+    gap: 25px;
   }
 }
 
