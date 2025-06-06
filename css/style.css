@@ -136,6 +136,7 @@ section {
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 30px;
   overflow: visible;
 }
@@ -489,7 +490,48 @@ section {
   }
 
   .buttons {
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     gap: 20px;
+    width: 100%;
+  }
+
+  .besitzer_card {
+    width: 90%;
+    height: auto;
+    padding: 1.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card_info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .visitenkarte_image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hundename {
+    font-size: 1.6rem;
+  }
+
+  .informationen_besitzer {
+    font-size: 1.1rem;
+  }
+
+  .informationen_besitzer p {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .kategorien {
+    width: 100%;
+    text-align: center;
   }
 }

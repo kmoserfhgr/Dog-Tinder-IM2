@@ -31,3 +31,6 @@ Die Arbeit mit JavaScript war neu und herausfordernd. Es zeigte sich, dass eine 
 - Wie sieht das CSS für den Tinder-Button „Konto erstellen“ aus?
 
 - Wie kann ich die Textfelder „Name“, „Telefon“, „E-Mail“ und „Ort“ untereinander in einer Spalte anordnen, sodass in der zweiten Spalte dahinter je nach Ausspielung des Arrays die dazugehörigen Daten erscheinen? Ich werde dir anschließend die dazugehörigen Codeausschnitte senden. Bitte sage mir anschließend, wie ich die beiden Spalten linksbündig und untereinander im CSS angleichen kann.
+
+- Wenn ich bei der besitzerkarte über den butten kreuz hovere, erscheint bei mir nicht nur das Kreuz sondern der ganze weisse kasten. woran liegt das? -> Code eingefügt
+- Erkläre mir diese einzelnen Elemente. -> Diverse Elemente eingefügt

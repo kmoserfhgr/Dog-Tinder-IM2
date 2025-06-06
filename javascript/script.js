@@ -2,134 +2,6 @@ console.log('hoi script.js');
 
 // === 1. Datenverwaltung ===
 
-let likedDogs = []; // Speicherung gelikter Hunde
-let likeCounter = 0;
-let matchAfter = getRandomMatchNumber(); // Wie viele Likes bis zum nächsten Match
-
-function getRandomMatchNumber() {
-  return Math.floor(Math.random() * 9) + 2; // Zufallszahl zwischen 2 und 10
-}
-
-
-// === 2. DOM-Elemente -> Bausteine für den Aufbau ===
-const button_no = document.querySelector('#button_no');
-const button_yes = document.querySelector('#button_yes');
-const card = document.querySelector('.card');
-const cardContent = document.querySelector('.card-content');
-
-
-
-// === 3. Aufbau ===
-
-// Buttons animieren
-addButtonEffects('.button_no');
-addButtonEffects('.button_yes');
-addButtonEffects('.button_nachricht_senden');
-addButtonEffects('.button_swipe_weiter');
-addButtonEffects('.button_cross');
-addButtonEffects('.button_cross_visitenkarte');
-
-// Event Listener setzen
-
-// Initial laden
-
-
-function addButtonEffects(selector) {
-  const buttons = document.querySelectorAll(selector);
-
-  buttons.forEach(button => {
-    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease'; 
-
-    // Hover: scale up + shadow
-    button.addEventListener('mouseenter', () => {
-      button.style.transform = 'scale(1.1)';
-      button.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
-    });
-
-    // Hover End: reset
-    button.addEventListener('mouseleave', () => {
-      button.style.transform = '';
-      button.style.boxShadow = '';
-    });
-
-    // Active (mousedown): scale down
-    button.addEventListener('mousedown', () => {
-      button.style.transform = 'scale(0.95)';
-    });
-
-    // Mouseup: zurück zur Hover-Animation
-    button.addEventListener('mouseup', () => {
-      button.style.transform = 'scale(1.1)';
-    });
-  });
-}
-
-
-
-
-
-// === Like-Event ===
-
-button_yes.addEventListener('click', async function () {
-  // aktuelles Hundprofil speichern
-  const currentDog = {
-    name: document.querySelector('#dog_name').innerText,
-    image: document.querySelector('#dog_image').src
-  };
-  
-  likedDogs.push(currentDog);
-  likeCounter++;
-
-  if (likeCounter >= matchAfter) {
-    showMatch(currentDog);
-    // Reset für den nächsten Match-Zyklus
-    likeCounter = 0;
-    matchAfter = getRandomMatchNumber();
-  } else {
-    await loadDogProfile(); // nächster Hund
-  }
-});
-
-
-function showMatch(dog) {
-  // Kein .hidden auf #configuration – es soll im Hintergrund sichtbar bleiben!
-
-  const matchSection = document.querySelector('#match');
-  matchSection.classList.remove('hidden');
-
-  // Match-Daten setzen
-  document.querySelector('#match_name').innerText = dog.name;
-  document.querySelector('#match_image').src = dog.image;
-}
-
-// Eventlistener für "Nachricht senden"
-document.querySelector('.button_nachricht_senden').addEventListener('click', function () {
-document.querySelector('#visitenkarte').classList.remove ('hidden');
-
-  // Match-Bereich ausblenden
-  document.querySelector('#match').classList.add('hidden');
-
-  // Visitenkarte einblenden
-  document.querySelector('#visitenkarte').classList.remove('hidden');
-
-  // Name und Bild aus dem Match übernehmen
-  const matchName = document.querySelector('#match_name').innerText;
-  const matchImage = document.querySelector('#match_image').src;
-
-  document.querySelector('#visitenkarte #match_name').innerText = matchName;
-  document.querySelector('#visitenkarte #match_image').src = matchImage;
-
-  // Zufällig ausgewählten Besitzer wählen
-  const randomOwner = besitzer_card[Math.floor(Math.random() * besitzer_card.length)];
-
-  // Besitzerinformationen anzeigen
-  document.querySelector('#owner_name').innerText = `${randomOwner.name}`;
-  document.querySelector('#owner_phone').innerText = `${randomOwner.phone}`;
-  document.querySelector('#owner_email').innerText = `${randomOwner.email}`;
-  document.querySelector('#owner_location').innerText = `${randomOwner.location}`;
-});
-
-
 /*Array mit Hundedaten*/
 const races = [
   {
@@ -948,15 +820,339 @@ const races = [
   }
 ];
 
+let likedDogs = []; // Speicherung gelikter Hunde
+let likeCounter = 0;
+let matchAfter = getRandomMatchNumber(); // Wie viele Likes bis zum nächsten Match
+
+function getRandomMatchNumber() {
+  return Math.floor(Math.random() * 9) + 2; // Zufallszahl zwischen 2 und 10
+}
+
+
+// === 2. DOM-Elemente -> Bausteine für den Aufbau ===
+const button_no = document.querySelector('#button_no');
+const button_yes = document.querySelector('#button_yes');
+const card = document.querySelector('.card');
+const cardContent = document.querySelector('.card-content');
+
+
+
+// === 3. Aufbau ===
+
+// Buttons animieren
+addButtonEffects('.button_no');
+addButtonEffects('.button_yes');
+addButtonEffects('.button_nachricht_senden');
+addButtonEffects('.button_swipe_weiter');
+addButtonEffects('.button_cross');
+addButtonEffects('.button_cross_visitenkarte');
+
+// Event Listener setzen
+button_yes.addEventListener('click', async function () {
+  animateAndSwipe('right');
+});
+
+button_no.addEventListener('click', async function () {
+  animateAndSwipe('left');
+});
+
+
+
+
+// === 4. Swipe-Funktion ===
+
+// Button Interaktion -> UI-Effekte
+function addButtonEffects(selector) { /*Funktion für Effekte wird so ermöglicht*/
+  const buttons = document.querySelectorAll(selector); /*alle Elemente werden ausgewählt, die dem übergebenen Selector entsprechen*/
+
+  buttons.forEach(button => { /*jedes gefundene Button-Element wird durchlaufen*/
+    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease'; 
+
+    
+    // Effekt bei Hover: scale up + shadow
+    button.addEventListener('mouseenter', () => {
+      button.style.transform = 'scale(1.1)';
+      button.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+    });
+
+    // Effekt bei Hover End: reset
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = '';
+      button.style.boxShadow = '';
+    });
+
+
+    // Effekt bei Klick (mousedown): scale down
+    button.addEventListener('mousedown', () => {
+      button.style.transform = 'scale(0.95)';
+    });
+
+    // Effekt bei Loslassen (mouseup): zurück auf den Hover-Zustand
+    button.addEventListener('mouseup', () => {
+      button.style.transform = 'scale(1.1)';
+    });
+  });
+}
+
+// Swipe-Logik
+
+/*Reaktion des Events aktivieren -> Card optisch bewegen*/
+  function animateAndSwipe(direction) {  /*reagiert visuell auf Event*/
+  const cardContent = document.querySelector('.card-content');
+  cardContent.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right');
+
+  setTimeout(async () => {  
+    cardContent.classList.remove('swipe-left', 'swipe-right');
+    cardContent.style.transform = '';
+    if (direction === 'right') {
+     
+      const currentDog = {
+        name: document.querySelector('#dog_name').innerText,
+        image: document.querySelector('#dog_image').src
+      };
+      likedDogs.push(currentDog);
+      likeCounter++;
+
+      if (likeCounter >= matchAfter) {
+        showMatch(currentDog);
+        likeCounter = 0;
+        matchAfter = getRandomMatchNumber();
+      } else {
+        await loadDogProfile();
+      }
+    } else {
+      await loadDogProfile();
+    }
+  }, 400); // Zeit muss zur CSS-Animation passen
+}
+
+/*Visuelle Animation bei Swipe soll sauber ablaufen und erst danach Hundekarte laden*/
+  function delayAndLoad(button) {
+  return new Promise(resolve => {
+
+  setTimeout(() => {
+    button.click();
+    cardContent.classList.remove('swipe-left', 'swipe-right');
+    cardContent.style.transform = '';
+    resolve();
+    }, 400); // gleiche Zeit wie Animation
+   });
+  }
+
+// Desktop: Maus Interaktion
+    // Desktop: Maus-Start
+    card.addEventListener('mousedown', (e) => {
+      startX = e.clientX;                       /*Startposition speichern*/
+      isDragging = true;                        /*Zustand: Swipe aktiv*/
+      cardContent.classList.add('dragging');    /*CSS-Class für visueller Swipe*/
+    });
+
+    // Desktop: Maus-Move -> Card folgt dem Cursor
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const moveX = e.clientX;
+      const diff = moveX - startX;
+      currentTranslateX = diff;
+      const rotation = diff / 20;
+      cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`;  
+    });
+
+    // Desktop: Maus-End -> Maus lässt los
+    document.addEventListener('mouseup', async (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      cardContent.classList.remove('dragging');
+
+    // Desktop: Maus-Swipe Auswertung
+
+      if (currentTranslateX > 100) {
+        cardContent.classList.add('swipe-right'); /*Like*/
+
+        await delayAndLoad(button_yes);
+
+      } else if (currentTranslateX < -100) {      
+        cardContent.classList.add('swipe-left');  /*Dislike*/
+
+        await delayAndLoad(button_no);
+
+      } else {   /*wenn nicht weit genug geswiped geht Card wieder zurück zur Mitte*/
+        cardContent.classList.add('animate-back');  
+        cardContent.style.transform = `translateX(0) rotate(0deg)`;
+
+        setTimeout(() => {   /*nach 300 Millisekunden erst gem. Animation*/
+          cardContent.classList.remove('animate-back');
+          cardContent.style.transform = '';
+        }, 300);
+      }
+
+      currentTranslateX = 0;  /*Reset für nächsten Swipe*/
+    });
+
+
+    
+// Touch
+    // Variablen zur Touch-Verarbeitung
+    let startX = 0;               /*Startposition beim Touch*/
+    let endX = 0;                 /*Endposition für alternative Methode*/
+    let currentTranslateX = 0;    /*Verschiebung während des Swipes*/
+    let isDragging = false;       /*Gibt an, ob gerade geswiped wird*/
+
+
+    // Touch-Start: Swipe beginnt
+    card.addEventListener('touchstart', (e) => {  
+      startX = e.touches[0].clientX;              /*Startposition des Touches wird gespeichert*/
+      cardContent.classList.add('dragging');      /*CSS-Class für visueller Swipe*/
+    });
+
+    // Touch-Move: Bewegung während des Swipes
+    card.addEventListener('touchmove', (e) => {
+      const moveX = e.touches[0].clientX;
+      const diff = moveX - startX;         /*berechnet die Verschiebung*/      
+      currentTranslateX = diff;
+
+      const rotation = diff / 20;          /*leichte Drehung bei Bewegung*/
+      cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`; /*rein visuelle Bewegung*/
+    });
+
+    // Touch-End: Finger lässt los
+    card.addEventListener('touchend', async (e) => {
+      endX = e.changedTouches[0].screenX;
+      cardContent.classList.remove('dragging'); /*CSS-Class für visueller Swipe wird wieder entfernt*/
+      handleSwipe();
+    });
+
+    // Touch-Swipe Auswertung nach Differenz
+    async function handleSwipe() {
+      const diff = endX - startX;   /*berechnet horizontale Wischbewegung*/
+      if (diff > 50) {
+        button_yes.click();         /*simuliert echten Klick auf Button, damit gleiche Logik fortgeführt werden kann*/
+        animateSwipe('right');
+      } else if (diff < -50) {
+        button_no.click();
+        animateSwipe('left');       /*ruft visuelle Swipe-animation auf (siehe unten)*/
+      }
+    }
+
+    // Touch-Swipe visuelle Animation per CSS
+
+    function animateSwipe(direction) {
+      card.classList.remove('swipe-left', 'swipe-right'); /*entfern vorherige Swipe-Klassen, damit Effekt neu ablaufen kann)*/
+      void card.offsetWidth;   /*Wichtig: zwingt Broweser Repaint/Redraw durchzuführen, damit neue Klasse sauber animiert wird*/                    
+      card.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right'); /*fügt abhängig vom Swipe passende CSS-Klasse hinzu*/
+    }
+
+    // Touch: volle Swipe-Logik inkl. Animation und Laden
+
+    card.addEventListener('touchend', async () => {
+    cardContent.classList.remove('dragging');
+
+    if (currentTranslateX > 100) {
+      cardContent.classList.add('swipe-right');
+
+      await delayAndLoad(button_yes);   /*führt Like/Dislike-Logik aus inkl. Hundewechsel*/
+
+    } else if (currentTranslateX < -100) {
+      cardContent.classList.add('swipe-left');
+
+      await delayAndLoad(button_no);    /*führt Like/Dislike-Logik aus inkl. Hundewechsel*/
+
+    } else {
+      cardContent.classList.add('animate-back');
+      cardContent.style.transform = `translateX(0) rotate(0deg)`;
+
+      setTimeout(() => {
+        cardContent.classList.remove('animate-back');
+        cardContent.style.transform = '';
+      }, 900);
+    }
+
+    currentTranslateX = 0;
+    });
+
+
+
+// Tastatursteuerung (← = nein, → = ja)
+document.addEventListener('keydown', async (e) => {
+  if (e.key === 'ArrowLeft') {              /*Dislike*/
+    await loadDogProfile();                 /*nächster Hund laden*/
+
+  } else if (e.key === 'ArrowRight') {      /*Hund wird geliked*/
+    
+    const currentDog = {
+      name: document.querySelector('#dog_name').innerText,
+      image: document.querySelector('#dog_image').src
+    };
+
+    likedDogs.push(currentDog);             /*Hund wird zum Array "likedDogs" hinzugefügt*/
+    likeCounter++;                          /*der Like-Zähler wird um 1 erhöht*/
+
+
+    if (likeCounter >= matchAfter) {        /*Wenn genug Likes für einen Match gesammelt wurden*/
+      showMatch(currentDog);    
+      likeCounter = 0;                      /*Like-Zähler wird zurückgesetzt*/
+      matchAfter = getRandomMatchNumber();  /*Neue Match-Grenze wird gesetzt*/
+    } else {
+      await loadDogProfile();               /*Nächster Hund wird geladen*/
+    }
+  }
+});
+
+
+
+// === 5. Match ===
+function showMatch(dog) {
+  
+  const matchSection = document.querySelector('#match');
+  matchSection.classList.remove('hidden');  /*blendet Matchbereich ein*/
+
+  // Hundedaten einfügen
+  document.querySelector('#match_name').innerText = dog.name; /*Hundename setzen*/
+  document.querySelector('#match_image').src = dog.image;     /*Hundebild setzen*/
+}
+
+
+
+// === 6. Besitzerkarte ===
+
+// Eventlistener für "Nachricht senden"
+document.querySelector('.button_nachricht_senden').addEventListener('click', function () {
+document.querySelector('#visitenkarte').classList.remove ('hidden');
+document.querySelector('#match').classList.add('hidden');
+
+// Hundedaten (Name und Bild) aus dem Match übernehmen
+const matchName = document.querySelector('#match_name').innerText;
+const matchImage = document.querySelector('#match_image').src;
+
+document.querySelector('#visitenkarte #match_name').innerText = matchName;
+document.querySelector('#visitenkarte #match_image').src = matchImage;
+
+
+// Zufällig ausgewählten Besitzer wählen
+const randomOwner = besitzer_card[Math.floor(Math.random() * besitzer_card.length)];
+
+// Besitzerinformationen anzeigen
+document.querySelector('#owner_name').innerText = `${randomOwner.name}`;
+document.querySelector('#owner_phone').innerText = `${randomOwner.phone}`;
+document.querySelector('#owner_email').innerText = `${randomOwner.email}`;
+document.querySelector('#owner_location').innerText = `${randomOwner.location}`;
+});
+
+
+
+
+// === 7. API ===
+
+// Liefert eine zufällige Rasse aus dem Hunde-Array
 function getRandomRace() {
   const index = Math.floor(Math.random() * races.length); // erzeugt Zufallszahl der Bilder zwischen 0 und 1
   return races[index];
 }
 
-/* API-Aufruf */
+// Holt ein zufälliges Bild einer bestimmten Rasse von der Dog-API
 async function loadRandomDogImage(random_dog) {
-  const url = `https://dog.ceo/api/breed/${random_dog.slug}/images/random`; //erzeugt aus API-URL ein zufälliges Bild
+  const url = `https://dog.ceo/api/breed/${random_dog.slug}/images/random`; /*erzeugt aus API-URL ein zufälliges Bild*/
   console.log(url);
+
   try {
     const response = await fetch(url); // fetch holt die Daten
     return await response.json(); // json konvertiert sie in ein nutzbares Objekt
@@ -966,217 +1162,32 @@ async function loadRandomDogImage(random_dog) {
   }
 }
 
-/* Lade Hundefoto + Infos */
-async function loadDogProfile() { //wählt eine zufällige Hunderasse.
+
+
+// === 8. Hund laden und anzeigen ===
+
+// Zufälliges Hundebild laden + Infos zu Besitzer angeben
+async function loadDogProfile() { /*wählt eine zufällige Hunderasse*/
   const random_dog = getRandomRace();
-  const data = await loadRandomDogImage(random_dog); //holt ein Bild der vorhin ausgewählten Rasse
+  const data = await loadRandomDogImage(random_dog); /*holt das Bild der vorhin ausgewählten Rasse*/
   if (data && data.message) {
     console.log('Zufälliger Hund:', random_dog.name);
     console.log('Bild:', data.message);
-    // Beispiel: Bild anzeigen
-    const img = document.querySelector('#dog_image');
+
+    // Hund visuell anzeigen
+    const img = document.querySelector('#dog_image');  /*Sucht in HTML das richtige Element für Hundebilder*/
     if (img) {
-      img.src = data.message;
-      img.alt = random_dog.name;
+      img.src = data.message;       /*nimmt neues Bild aus API*/
+      img.alt = random_dog.name;    /*Fügt Namen als Alternativtext hinzu*/
     }
-    const name = document.querySelector('#dog_name');
-    name.innerHTML = random_dog.name;
+    const name = document.querySelector('#dog_name'); /*holt Element, das Hundenamen anzeigen soll*/
+    name.innerHTML = random_dog.name; 
   }
 }
 
 
-/*Swipe Events*/
 
-
-// Touch-Variablen
-let startX = 0;
-let endX = 0;
-
-// Swipe-Variablen
-let isDragging = false;
-
-// Touch-Start
-card.addEventListener('touchstart', (e) => {
-  startX = e.changedTouches[0].screenX;
-});
-
-// Touch-Ende
-card.addEventListener('touchend', async (e) => {
-  endX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-button_yes.addEventListener('click', async function () {
-  animateAndSwipe('right');
-});
-
-button_no.addEventListener('click', async function () {
-  animateAndSwipe('left');
-});
-
-function animateAndSwipe(direction) {
-  const cardContent = document.querySelector('.card-content');
-  cardContent.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right');
-
-  // Nach Animation Hund neu laden
-  setTimeout(async () => {
-    cardContent.classList.remove('swipe-left', 'swipe-right');
-    cardContent.style.transform = '';
-    if (direction === 'right') {
-      // Like-Logik
-      const currentDog = {
-        name: document.querySelector('#dog_name').innerText,
-        image: document.querySelector('#dog_image').src
-      };
-      likedDogs.push(currentDog);
-      likeCounter++;
-      if (likeCounter >= matchAfter) {
-        showMatch(currentDog);
-        likeCounter = 0;
-        matchAfter = getRandomMatchNumber();
-      } else {
-        await loadDogProfile();
-      }
-    } else {
-      // Dislike → direkt nächsten Hund
-      await loadDogProfile();
-    }
-  }, 400); // Zeit muss zur CSS-Animation passen
-}
-
-// Desktop: Maus gedrückt
-card.addEventListener('mousedown', (e) => {
-  startX = e.clientX;
-  isDragging = true;
-  cardContent.classList.add('dragging');
-});
-
-// Desktop: Maus bewegt
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  const moveX = e.clientX;
-  const diff = moveX - startX;
-  currentTranslateX = diff;
-  const rotation = diff / 20;
-  cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`;
-});
-
-// Desktop: Maus losgelassen
-document.addEventListener('mouseup', async (e) => {
-  if (!isDragging) return;
-  isDragging = false;
-  cardContent.classList.remove('dragging');
-
-  if (currentTranslateX > 100) {
-    cardContent.classList.add('swipe-right');
-    await delayAndLoad(button_yes);
-  } else if (currentTranslateX < -100) {
-    cardContent.classList.add('swipe-left');
-    await delayAndLoad(button_no);
-  } else {
-    cardContent.classList.add('animate-back');
-    cardContent.style.transform = `translateX(0) rotate(0deg)`;
-    setTimeout(() => {
-      cardContent.classList.remove('animate-back');
-      cardContent.style.transform = '';
-    }, 300);
-  }
-
-  currentTranslateX = 0;
-});
-
-
-
-let currentTranslateX = 0;
-
-card.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-  cardContent.classList.add('dragging');
-});
-
-card.addEventListener('touchmove', (e) => {
-  const moveX = e.touches[0].clientX;
-  const diff = moveX - startX;
-  currentTranslateX = diff;
-
-  const rotation = diff / 20; // leichte Drehung bei Bewegung
-  cardContent.style.transform = `translateX(${diff}px) rotate(${rotation}deg)`;
-});
-
-card.addEventListener('touchend', async () => {
-  cardContent.classList.remove('dragging');
-
-  if (currentTranslateX > 100) {
-    cardContent.classList.add('swipe-right');
-    await delayAndLoad(button_yes);
-  } else if (currentTranslateX < -100) {
-    cardContent.classList.add('swipe-left');
-    await delayAndLoad(button_no);
-  } else {
-    cardContent.classList.add('animate-back');
-    cardContent.style.transform = `translateX(0) rotate(0deg)`;
-
-    setTimeout(() => {
-      cardContent.classList.remove('animate-back');
-      cardContent.style.transform = '';
-    }, 900);
-  }
-
-  currentTranslateX = 0;
-});
-
-function delayAndLoad(button) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      button.click();
-      cardContent.classList.remove('swipe-left', 'swipe-right');
-      cardContent.style.transform = '';
-      resolve();
-    }, 900); // gleiche Zeit wie Animation
-  });
-}
-
-// Tastatursteuerung (← = nein, → = ja)
-document.addEventListener('keydown', async (e) => {
-  if (e.key === 'ArrowLeft') {
-    await loadDogProfile(); // Dislike
-  } else if (e.key === 'ArrowRight') {
-    // Like
-    const currentDog = {
-      name: document.querySelector('#dog_name').innerText,
-      image: document.querySelector('#dog_image').src
-    };
-    likedDogs.push(currentDog);
-    likeCounter++;
-    if (likeCounter >= matchAfter) {
-      showMatch(currentDog);
-      likeCounter = 0;
-      matchAfter = getRandomMatchNumber();
-    } else {
-      await loadDogProfile();
-    }
-  }
-});
-
-// Swipe auswerten
-async function handleSwipe() {
-  const diff = endX - startX;
-  if (diff > 50) {
-    button_yes.click();
-    animateSwipe('right');
-  } else if (diff < -50) {
-    button_no.click();
-    animateSwipe('left');
-  }
-}
-
-function animateSwipe(direction) {
-  card.classList.remove('swipe-left', 'swipe-right');
-  void card.offsetWidth; // Repaint-Reset
-  card.classList.add(direction === 'left' ? 'swipe-left' : 'swipe-right');
-}
-
-/*Initiale Funktion beim Seitenladen*/
+// === 9. Initiale Funktion ===
 function initial() {
   loadDogProfile();
 }
