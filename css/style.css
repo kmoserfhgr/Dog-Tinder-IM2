@@ -192,7 +192,7 @@ section {
 
 .button_cross {
   color: #ff5864;
-  position: absolute;
+  position: relative;
   font-size: 3rem;
   background-color: transparent;
   cursor: pointer;
@@ -201,7 +201,7 @@ section {
   display: inline-block;
   margin: 0;
   top: -1rem;
-  right: -10rem;
+  right: -30rem;
   text-decoration: none;
 }
 
@@ -293,9 +293,11 @@ section {
 
 .card_info {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
 
@@ -383,7 +385,7 @@ section {
   font-size: 3rem;
   z-index: 999;
   color: white;
-  padding: 20rem;
+  padding: 15rem 4rem 4rem 4rem;
 }
 
 
@@ -412,103 +414,210 @@ section {
 
 
 
-/* RESPONSIVE DESIGN unpassender_match.html*/
-
-/* Für Tablets (max-width: 1024px) */
+/* RESPONSIVE DESIGN  SWIPE SEITE */
 @media (max-width: 1024px) {
-  .content_unpassender_match {
-    font-size: 2.5rem;
-    padding: 6rem;
+  .logo_farbig {
+    height: 5vh;
+    margin-bottom: 4rem;
+    left: 2vw;
   }
 
-  .logo_weiss {
-    top: 1.5rem;
-    left: 2rem;
-    height: 2.5rem;
-  }
-
-  .logo_farbig{
-    top: 1.5rem;
-    left: 2rem;
-    height: 2.5rem;
-  }
-
-  .button_swipe_weiter {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-  
-}
-
-/* Für kleinere Tablets und große Smartphones (max-width: 768px) */
-@media (max-width: 768px) {
-  .content_unpassender_match {
+  .card-content p {
     font-size: 2rem;
-    padding: 10rem;
+    padding-top: 22rem;
   }
 
-  .logo_weiss {
-    top: 1rem;
-    left: 1.5rem;
-    height: 2.2rem;
-  }
-
-  .logo_farbig {
-    top: 1rem;
-    left: 1.5rem;
-    height: 2.2rem;
-  }
-
-  .button_swipe_weiter {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-}
-
-/* Für Smartphones (max-width: 480px) */
-@media (max-width: 480px) {
-  .content_unpassender_match {
-    font-size: 1.5rem;
-    padding: 8rem;
-  }
-
-  .logo_weiss {
-    top: 1rem;
-    left: 1rem;
-    height: 2rem;
-  }
-
-  .logo_farbig {
-    top: 1rem;
-    left: 1rem;
-    height: 2rem;
-  }
-
-  .button_swipe_weiter {
-    padding: 6px 12px;
-    font-size: 12px;
+  .button_no,
+  .button_yes {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
   }
 
   .buttons {
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    gap: 25px;
+    margin-top: 2rem;
+  }
+
+}
+
+/* Für kleinere Tablets SWIPE SEITE*/
+@media (max-width: 768px) {
+  .logo_farbig {
+    height: 4.5vh;
+    margin-bottom: -1rem;
+    left: 2vw;
+  }
+
+  .card-content p {
+    font-size: 1.6rem;
+    padding-top: 18rem;
+    padding-bottom: 30px;
+  }
+
+  .button_no,
+  .button_yes {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+
+  .buttons {
     gap: 20px;
-    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
+
+/* Für Smartphones SWIPE SEITE*/
+@media (max-width: 480px) {
+  .logo_farbig {
+    height: 4vh;
+    margin-bottom: 2rem;
+    left: 1.5vw;
+  }
+  
+  .card-content p {
+    font-size: 1.3rem;
+    padding-top: 15rem;
+    padding-bottom: 15px;
+  }
+
+  .button_no,
+  .button_yes {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    gap: 15px;
+    margin-top: 1rem;
+  }
+}
+
+/* RESPONSIVE DESIGN  ITS A MATCH*/
+/* Für Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .button_cross {
+    font-size: 2.5rem;
+    top: -0.8rem;
+    right: -20rem;
+  }
+  .match-info {
+    width: 90%;
+    max-width: 420px;
+    padding: 1.5rem;
+  }
+
+  .match-info h1 {
+    font-size: 2.2rem;
+  }
+
+  .match-info p {
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .match-info img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .button_nachricht_senden {
+    font-size: 15px;
+    padding: 10px 20px;
+    margin: 2.5rem;
+  }
+
+}
+
+/* Für kleinere Tablets ITS A MATCH*/
+@media (max-width: 768px) {
+  .button_cross {
+    font-size: 2rem;
+    top: -0.5rem;
+    right: -12rem;
+  }
+
+  .match-info {
+    width: 90%;
+    max-width: 380px;
+    padding: 1.2rem;
+  }
+
+  .match-info h1 {
+    font-size: 1.8rem;
+  }
+
+  .match-info p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .match-info img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .button_nachricht_senden {
+    font-size: 14px;
+    padding: 9px 18px;
+    margin: 2rem;
+  }
+
+}
+
+/* Für Smartphones ITS A MATCH */
+@media (max-width: 480px) {
+  .button_cross {
+    font-size: 1.6rem;
+    top: -0.3rem;
+    right: -6rem;
+  }
+
+  .match-info {
+    width: 95%;
+    max-width: 340px;
+    padding: 1rem;
+  }
+
+  .match-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .match-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .match-info img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .button_nachricht_senden {
+    font-size: 13px;
+    padding: 8px 16px;
+    margin: 1.5rem;
+    width: 60%; 
+    max-width: 300px;
+  }
+
+}
+
+/* RESPONSIVE DESIGN  VISITENKARTE */
+/* Für Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .button_cross_visitenkarte {
+    font-size: 2rem;
+    top: 0.8rem;
+    right: 1rem;
   }
 
   .besitzer_card {
-    width: 90%;
+    width: 80%;
     height: auto;
-    padding: 1.5rem;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .card_info {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    padding: 2rem;
   }
 
   .visitenkarte_image {
@@ -517,21 +626,159 @@ section {
   }
 
   .hundename {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
   }
 
   .informationen_besitzer {
     font-size: 1.1rem;
+    margin-top: 2rem;
   }
 
   .informationen_besitzer p {
-    flex-direction: column;
-    gap: 0.5rem;
     font-size: 1.1rem;
   }
 
   .kategorien {
-    width: 100%;
-    text-align: center;
+    width: 120px;
+  }
+}
+
+/* Für kleinere Tablets VISITENKARTE*/
+@media (max-width: 768px) {
+  .button_cross_visitenkarte {
+    font-size: 1.8rem;
+    top: 0.6rem;
+    right: 0.8rem;
+  }
+
+  .besitzer_card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .visitenkarte_image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .hundename {
+    font-size: 1.6rem;
+  }
+
+  .informationen_besitzer {
+    font-size: 1rem;
+  }
+
+  .informationen_besitzer p {
+    font-size: 1rem;
+    gap: 1.5rem;
+  }
+
+  .kategorien {
+    width: 100px;
+  }
+}
+
+/* Für Smartphones VISITENKARTE*/
+@media (max-width: 480px) {
+  .button_cross_visitenkarte {
+    font-size: 1.5rem;
+    top: 0.4rem;
+    right: 0.6rem;
+  }
+
+  .besitzer_card {
+    width: 94vw;
+    max-width: 380px;
+    padding: 0.9rem 1rem;
+    border-radius: 16px;
+  }
+
+  .visitenkarte_image {
+    width: 70px;
+    height: 70px;
+  }
+
+  .hundename {
+    font-size: 1.3rem;
+  }
+
+  .informationen_besitzer {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .informationen_besitzer p {
+    font-size: 0.9rem;
+    gap: 0.6rem;
+    margin: 0.5rem 0;
+    line-height: 1.2;
+  }
+
+  .kategorien {
+    width: 75px;
+  }
+}
+
+
+
+/* RESPONSIVE DESIGN  UNAPASSENDER MATCH*/
+/* Für Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .content_unpassender_match {
+    font-size: 2.5rem;
+    padding: 12rem 4rem 4rem 4rem;
+  }
+
+  .logo_weiss {
+    top: 1.5rem;
+    left: 2rem;
+    height: 2.5rem;
+  }
+
+  .button_swipe_weiter {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 2rem auto;
+  }
+}
+
+/* Für kleinere Tablets UNPASSENDER MATCH */
+@media (max-width: 768px) {
+  .content_unpassender_match {
+    font-size: 2rem;
+    padding: 10rem 2rem 2rem 2rem;
+  }
+
+  .logo_weiss {
+    top: 1.2rem;
+    left: 1.5rem;
+    height: 2.2rem;
+  }
+
+  .button_swipe_weiter {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    margin: 1.5rem auto;
+  }
+}
+
+/* Für Smartphones UNPASSENDER MATCH*/
+@media (max-width: 480px) {
+  .content_unpassender_match {
+    font-size: 1.6rem;
+    padding: 14rem 1.5rem 6rem 1.5rem;
+  }
+
+  .logo_weiss {
+    top: 1rem;
+    left: 1rem;
+    height: 2rem;
+  }
+
+  .button_swipe_weiter {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    margin: 3rem auto;
   }
 }
