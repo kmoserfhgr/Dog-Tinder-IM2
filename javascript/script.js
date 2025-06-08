@@ -866,7 +866,8 @@ function addButtonEffects(selector) { /*Funktion für Effekte wird so ermöglich
   const buttons = document.querySelectorAll(selector); /*alle Elemente werden ausgewählt, die dem übergebenen Selector entsprechen*/
 
   buttons.forEach(button => { /*jedes gefundene Button-Element wird durchlaufen*/
-    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease'; 
+    button.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    
 
     
     // Effekt bei Hover: scale up + shadow

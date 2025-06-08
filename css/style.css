@@ -209,15 +209,28 @@ section {
   color: #ff5864;
   position: absolute;
   font-size: 2.5rem;
-  background-color: transparent;
+  background-color: transparent !important;
   cursor: pointer;
   z-index: 100;
   border: none;
-  display: inline-block;
+  display: inline-flex;
+  padding: 0;
   margin: 0;
   top: 1rem;
   right: 1.5rem;
   text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button_cross_visitenkarte:hover,
+.button_cross_visitenkarte:focus,
+.button_cross_visitenkarte:active {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 /* its a Match */
